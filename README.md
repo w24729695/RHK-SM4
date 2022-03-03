@@ -4,7 +4,7 @@ It is meant to integrate easily with stmpy: https://github.com/harrispirie/stmpy
 
 stmpy has its own function that uses this package to port all of the sm4 data into the same format stmpy uses
 
-It is highly recommended to use nbstripout https://github.com/kynan/nbstripout if contributing to this repo. Install as descripbed and then run `nbstripout --install` in terminal in the repository directory
+It is highly recommended to use nbstripout https://github.com/kynan/nbstripout if contributing to this repo. Install as described and then run `nbstripout --install` in terminal in the repository directory
 
 ## To install
 
