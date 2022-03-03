@@ -7,6 +7,10 @@ setup(
     install_requires=[
         'numpy',
         'pandas'
-    ]
+    ],
+    extras_require={
+        'interactive': ['matplotlib', 'jupyter']    
+        
+    }
 )
 
