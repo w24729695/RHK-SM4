@@ -1,14 +1,43 @@
-It would be helpful if all participants import stmpy in a jupyter notebook at some point, as our read_sm4 function is already integrated to stmpy, and it would be good to access a lot of useful features that developed in our lab over the past few years .
-To install the package, you will need to follow these steps. 
+This package is meant to pull sm4 file types into python. 
 
-How to install stmpy:
-Download anaconda
-Download GitHub desktop
-In GitHub desktop, sign in to your GitHub account (or create a new account if you don’t have one)
-Select "Clone a repository" , then select the "URL" tab, and paste the url: https://github.com/harrispirie/stmpy. Choose your local install folder (somewhere accessible, we will navigate there next) and click "Clone".
-Launch Anaconda, then launch the command terminal (called something like CMD.exe prompt), and navigate to the folder containing stmpy. By default this folder should be something like C:\Users\Name\Documents\GitHub\stmpy\
-Type dir on windows or ls on mac to reveal the folder contents. You should see a file called setup.py
-Within the command prompt run: python setup.py develop
-In the Anaconda main window, launch a jupyter notebook. In the first cell type %pylab inline and execute the cell. In the second cell type import stmpy and execute.
-To call your data you just need to type in stmpy.load('xxx.sm4').
-Please email me if you have any difficulties with a screenshot of your error message.
+It is meant to integrate easily with stmpy: https://github.com/harrispirie/stmpy 
+
+stmpy has its own function that uses this package to port all of the sm4 data into the same format stmpy uses
+
+## To install
+
+Clone or download this repository onto your folder
+
+navigate to the directory in your terminal
+
+run the command `pip install -e .` 'LineType': 5,
+
+add `import rhk_sm4.rhk_sm4 as sm4` to python files to access methods via `sm4.method()`
+
+## General Repo Structure
+- **data** folder contains test data
+- **notebooks** folder contains tutorial and test notebooks
+- **rhk_sm4** contains the package code
+
+
+## Basic Usage
+`file = rhk_sm4.load_sm4('file')`
+
+`file.print_info()` displays all the different channels exported in the .sm4
+
+Each exported channel in the sm4 (topography, current, dF, etc) becomes a 'page' in the file, which can be accessed by `file[index]` where index is the index in the print_info data table corresponding to the channel of interest.
+
+to get the data
+`file[index].data`
+
+to get x coordinates for the data
+`file[index].coords`
+
+to get a list of metadata
+`file[index].attrs`
+
+## Tested Cases
+Different 'line types' (which are associated with different spectrum types i.e. oscope trace, noise spectrum etc) process and scale the raw data differently. Here are the tested spectrum + channel types that have been explicitely examined and we are confident import correctly with correct scaling etc.
+
+- Noise spectrum + current channel
+- Noise spectrum + ch3 input
