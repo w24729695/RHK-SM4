@@ -207,7 +207,7 @@ class RHKsm4:
             self._pages.append(page)
             # Read Object list of Page Index
             page._read_object_list(self)
-        # Read Pages content
+        
         for page in self:
             page._read()
         # Close the file
@@ -632,6 +632,9 @@ class RHKPage(RHKObjectContainer):
         self._read_data()
 
     def _read_data(self):
+        """
+        method = 'raw data float', 'scaled data float', or 'scaled data int'
+        """
         # Read Page Data
 
         # Seek for the position of the Page Data
@@ -640,7 +643,7 @@ class RHKPage(RHKObjectContainer):
 
         # Load data, selecting float or long integer type
         data_size = int(self._page_data_size / 4)
-
+        # Read Pages content
         if (self._line_type in [1, 6, 9, 10, 11, 13, 18, 19, 21, 22] or self._page_data_type == 6):
             raw_data = np.fromfile(self._sm4._file, dtype=np.float32, count=data_size)
             '''
@@ -648,7 +651,11 @@ class RHKPage(RHKObjectContainer):
             Where m is the Param count and n is the Data length (array size) stored in the page header. 
             The first float data in each element represents the output values.
             '''
-        else: ###
+        elif self._line_type == 5:
+            raw_data = np.fromfile(self._sm4._file, dtype=np.float32, count=data_size) ###
+            raw_data = np.float32(raw_data) * self.attrs['Zscale'] + self.attrs['Zoffset']
+            
+        else:
             raw_data = np.fromfile(self._sm4._file, dtype=np.int32, count=data_size) ###
             raw_data = np.float32(raw_data) * self.attrs['Zscale'] + self.attrs['Zoffset']
 
