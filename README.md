@@ -12,7 +12,7 @@ navigate to the directory in your terminal
 
 run the command `pip install -e .` 'LineType': 5,
 
-add `import rhk_sm4` to python files to access methods
+add `import rhk_sm4.rhk_sm4 as sm4` to python files to access methods via `sm4.method()`
 
 ## General Repo Structure
 - **data** folder contains test data
