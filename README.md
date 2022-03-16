@@ -29,10 +29,10 @@ add `import rhk_sm4.rhk_sm4 as sm4` to python files to access methods via `sm4.m
 
 Each exported channel in the sm4 (topography, current, dF, etc) becomes a 'page' in the file, which can be accessed by `file[index]` where index is the index in the print_info data table corresponding to the channel of interest.
 
-to get the data
+to get the data (i.e. independent variable of spectrum/topo)
 `file[index].data`
 
-to get x coordinates for the data
+to get coordinates for the data (i.e. dependent variable of spectrum/topo)
 `file[index].coords`
 
 to get a list of metadata
@@ -43,3 +43,5 @@ Different 'line types' (which are associated with different spectrum types i.e. 
 
 - Noise spectrum + current channel
 - Noise spectrum + ch3 input
+- IZ current and coodinates
+- Oscope current and topography
