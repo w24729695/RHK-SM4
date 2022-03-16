@@ -12,7 +12,7 @@ Clone or download this repository onto your folder
 
 navigate to the directory in your terminal
 
-run the command `pip install -e .` 'LineType': 5,
+run the command `pip install -e .` 
 
 add `import rhk_sm4.rhk_sm4 as sm4` to python files to access methods via `sm4.method()`
 
@@ -29,14 +29,11 @@ add `import rhk_sm4.rhk_sm4 as sm4` to python files to access methods via `sm4.m
 
 Each exported channel in the sm4 (topography, current, dF, etc) becomes a 'page' in the file, which can be accessed by `file[index]` where index is the index in the print_info data table corresponding to the channel of interest.
 
-to get the data (i.e. independent variable of spectrum/topo)
-`file[index].data`
+`file[index].data` - independent variable of spectrum/topo     
 
-to get coordinates for the data (i.e. dependent variable of spectrum/topo)
-`file[index].coords`
+`file[index].coords` - dependent variable of spectrum/topo (if 1D it's stored in 'x')
 
-to get a list of metadata
-`file[index].attrs`
+`file[index].attrs`- list of metadata
 
 ## Tested Cases
 Different 'line types' (which are associated with different spectrum types i.e. oscope trace, noise spectrum etc) process and scale the raw data differently. Here are the tested spectrum + channel types that have been explicitely examined and we are confident import correctly with correct scaling etc.
